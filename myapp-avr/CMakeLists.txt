@@ -15,7 +15,7 @@ target_compile_features(exec_avr-elf
 
 target_compile_options(exec_avr-elf
         PRIVATE
-        -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto -mmcu=${AVR_MCU}
+        -ffunction-sections -fdata-sections -mmcu=${AVR_MCU}
         )
 
 target_compile_definitions(exec_avr-elf
@@ -26,7 +26,7 @@ target_compile_definitions(exec_avr-elf
 set_target_properties(exec_avr-elf
         PROPERTIES
         CXX_EXTENSIONS ON
-        LINK_FLAGS "-flto -fuse-linker-plugin -mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
+        LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
         )
 
 target_link_libraries(exec_avr-elf

@@ -6,8 +6,17 @@
  *
  */
 
-#include <mylib/mylib.h>
 #include <stdio.h>
+
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+
+#include <mylib/mylib.h>
+
+//#ifdef __cplusplus
+//}
+//#endif
 
 namespace mylib {
 

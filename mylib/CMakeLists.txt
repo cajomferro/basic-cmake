@@ -32,17 +32,18 @@ target_compile_features(mylib
 if ("${IS_AVR}")
     target_compile_options(mylib
             PRIVATE
-            -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto -mmcu=${AVR_MCU}
+            -ffunction-sections -fdata-sections -mmcu=${AVR_MCU}
             )
 
     target_compile_definitions(mylib
             PRIVATE
-            ARDUINO=10805 F_CPU=${MCU_SPEED}
+            F_CPU=${MCU_SPEED}
             )
 
     set_target_properties(mylib
             PROPERTIES
             CXX_EXTENSIONS ON
+            #            LINK_FLAGS "-flto -fuse-linker-plugin -mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
             )
 
 else ()
@@ -106,3 +107,38 @@ export(EXPORT mylib-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MyLibTargets.cmake 
 
 #Register package in user's package registry
 export(PACKAGE MyLib)
+
+
+#if ("${IS_AVR}")
+#
+#    # elf file
+#    add_executable(exec_avr-elf
+#            EXCLUDE_FROM_ALL
+#            src/main.cpp)
+#
+#    target_compile_features(exec_avr-elf
+#            PRIVATE
+#            cxx_auto_type
+#            )
+#
+#    target_compile_options(exec_avr-elf
+#            PRIVATE
+#            -ffunction-sections -fdata-sections -mmcu=${AVR_MCU}
+#            )
+#
+#    target_compile_definitions(exec_avr-elf
+#            PRIVATE
+#            F_CPU=${MCU_SPEED}
+#            )
+#
+#    set_target_properties(exec_avr-elf
+#            PROPERTIES
+#            CXX_EXTENSIONS ON
+#            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
+#            )
+#
+#    target_link_libraries(exec_avr-elf
+#            mylib
+#            )
+#
+#endif ()

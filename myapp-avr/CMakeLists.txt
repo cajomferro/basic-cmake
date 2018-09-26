@@ -25,6 +25,7 @@ target_compile_definitions(exec_avr-elf
 
 set_target_properties(exec_avr-elf
         PROPERTIES
+        NO_SYSTEM_FROM_IMPORTED ON
         CXX_EXTENSIONS ON
         LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
         )

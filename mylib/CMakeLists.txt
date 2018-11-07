@@ -32,7 +32,7 @@ target_compile_features(mylib
 if ("${IS_AVR}")
     target_compile_options(mylib
             PRIVATE
-            -ffunction-sections -fdata-sections -mmcu=${AVR_MCU}
+            -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto -mmcu=${AVR_MCU}
             )
 
     target_compile_definitions(mylib
@@ -43,7 +43,6 @@ if ("${IS_AVR}")
     set_target_properties(mylib
             PROPERTIES
             CXX_EXTENSIONS ON
-            #            LINK_FLAGS "-flto -fuse-linker-plugin -mmcu=${AVR_MCU} -Wl,--gc-sections -Wl,-Map,exec_avr.map"
             )
 
 else ()

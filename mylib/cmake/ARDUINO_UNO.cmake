@@ -6,6 +6,9 @@ find_program(AVR_CXX avr-g++)
 find_program(AVR_OBJCOPY avr-objcopy)
 find_program(AVR_SIZE_TOOL avr-size)
 find_program(AVR_OBJDUMP avr-objdump)
+find_program(AVR_GCC_AR avr-gcc-ar)
+find_program(AVR_GCC_RANLIB avr-gcc-ranlib)
+find_program(AVR_GCC_NM avr-gcc-nm)
 
 ##########################################################################
 # toolchain starts with defining mandatory variables
@@ -14,6 +17,9 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR avr)
 set(CMAKE_C_COMPILER ${AVR_CC}) # set this on cmake command
 set(CMAKE_CXX_COMPILER ${AVR_CXX}) # set this on cmake command
+set(CMAKE_AR ${AVR_GCC_AR})
+set(CMAKE_RANLIB ${AVR_GCC_RANLIB})
+set(CMAKE_NM ${AVR_GCC_NM})
 
 ##########################################################################
 # identification
